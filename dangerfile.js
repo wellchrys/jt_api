@@ -8,7 +8,7 @@ const {
 const changedFiles = [...modifiedFiles, ...newFiles];
 const elixirFiles = changedFiles.filter((f) => f.match(/.ex$/));
 const routerFiles = changedFiles.filter((f) => f.match(/router.ex$/));
-const elixirTestFiles = changedFiles.filter((f) => f.match(/test\/nex\/|test\/nex_web\//));
+const elixirTestFiles = changedFiles.filter((f) => f.match(/test\/just\/|test\/just_web\//));
 const queryFiles = changedFiles.filter((file) =>
   file.match(/(query.ex)|(queries.ex)$/)
 );
@@ -20,7 +20,7 @@ const testDirectories = [
 const modifiedLibFiles = changedFiles.filter((f) => f.includes("lib/"));
 const hasLibChanges = modifiedLibFiles.length > 0;
 const nonInternalLibFiles = elixirFiles.filter(
-  (f) => !f.match("lib/nex/")
+  (f) => !f.match("lib/just/")
 );
 
 const checks = [
@@ -64,9 +64,9 @@ const checks = [
 
     if (preloadFound) {
       const single =
-        "\n# single SQL query\Nex.Users.User\n|> join(:inner, [u], o in assoc(u, :group_customer))\n|> Ecto.Query.where([u], u.id == 1)\n|> Ecto.Query.preload([u, o], group_customer: o)\n|> Repo.one!()";
+        "\n# single SQL query\Just.Users.User\n|> join(:inner, [u], o in assoc(u, :group_customer))\n|> Ecto.Query.where([u], u.id == 1)\n|> Ecto.Query.preload([u, o], ticket: o)\n|> Repo.one!()";
       const multiple =
-        "\n# multiple SQL queries\Nex.Users.User\n|> Ecto.Query.where([u], u.id == 1)\n|> Repo.one!()\n|> Repo.preload(:group_customer)";
+        "\n# multiple SQL queries\Just.Users.User\n|> Ecto.Query.where([u], u.id == 1)\n|> Repo.one!()\n|> Repo.preload(:ticket)";
 
       warn(
         `Consider if preloading using lookup (join) would be more performant (it may not always be), e.g:\n\n${"```elixir"}${single}\n${multiple}\n${"```"}`
@@ -204,7 +204,7 @@ const checks = [
       .map((file) => diffForFile(file));
 
     const libUsageFound = (await Promise.all(diffs)).some(({ added }) =>
-      added.match(/alias Nex\.*/g)
+      added.match(/alias Just\.*/g)
     );
 
     if (libUsageFound) {
@@ -307,10 +307,10 @@ const checks = [
   },
   async function makeSureShortcutLinkInPRBody() {
     if (
-      !pr.body.match(/https:\/\/app\.shortcut\.com\/nex-energy\/story\/[0-9]+/g)
+      !pr.body.match(/https:\/\/app\.shortcut\.com\/story\/[0-9]+/g)
     ) {
       fail(
-        "Please make sure you add the shortcut story URL in the PR body with https://app.shortcut.com/nex-energy/story/[XXXX]." +
+        "Please make sure you add the shortcut story URL in the PR body with https://app.shortcut.com/story/[XXXX]." +
           "It is recommended to have it to be unique and has never been associated with another Github PR."
       );
     }
