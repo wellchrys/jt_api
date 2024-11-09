@@ -1,0 +1,25 @@
+{
+  "name": "jt-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:wellchrys/jt_api.git",
+  "author": "wellchrys <chrystiandejesus@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint-md": "remark .",
+    "dialyzer": "MIX_ENV=dev mix dialyzer --format raw"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
+  },
+  "devDependencies": {
+    "danger": "^10.6.4",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "remark-cli": "^9.0.0",
+    "remark-lint": "^8.0.0",
+    "remark-preset-lint-recommended": "^5.0.0"
+  }
+}

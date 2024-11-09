@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "name": "Just API",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "elixirLS.projectDir": "./",
+  },
+  "extensions": {
+    "recommendations": ["phoenixframework.phoenix"]
+  },
+  "[elixir]": {}
+}

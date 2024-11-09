@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  postgresql:
+    container_name: just-api-postgresql
+    image: postgres:12.0-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    logging:
+      options:
+        max-file: "5"
+        max-size: "10m"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+volumes:
+  postgresql:

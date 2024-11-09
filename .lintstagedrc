@@ -1,0 +1,10 @@
+{
+  "*.md": [
+    "yarn lint-md"
+  ],
+  "*.ex?(s)": [
+    "mix format --dot-formatter .formatter.exs",
+    "mix code.check",
+    "yarn dialyzer"
+  ]
+}

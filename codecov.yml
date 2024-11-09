@@ -1,0 +1,14 @@
+codecov:
+  token: "7BNSSR4QQ6"
+  bot: "codecov-io"
+  ci:
+    - "circleci.com"
+  strict_yaml_branch: "yaml-config"
+  require_ci_to_pass: false
+
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 85%
